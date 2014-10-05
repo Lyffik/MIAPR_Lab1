@@ -116,13 +116,20 @@ namespace WindowsFormsApplication1
         private bool FindNewCenters()
         {
             bool result = false;
-            foreach (CenterOfClass center in centerOfClass)
+            /*foreach (CenterOfClass center in centerOfClass)
             {
                 if (center.ChangedCenter())
                 {
                     result = true;
                 }
-            }
+            }*/
+            Parallel.ForEach(centerOfClass, center =>
+            {
+                if (center.ChangedCenter())
+                {
+                    result = true;
+                }
+            });
             return result;
         }
 
