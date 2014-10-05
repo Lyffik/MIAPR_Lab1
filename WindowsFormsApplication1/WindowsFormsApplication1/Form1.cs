@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -20,17 +14,19 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            KMeans kMeans = new KMeans((int)numericUpDownPointsCount.Value, (int)numericUpDownClassesCount.Value);
-            kMeans.MaxX = pictureBox1.Width;
-            kMeans.MaxY = pictureBox1.Height;
-            Graphics g = pictureBox1.CreateGraphics();
+            var stopwatch = new Stopwatch();
+            var kMeans = new KMeans((int) numericUpDownPointsCount.Value, (int) numericUpDownClassesCount.Value);
+            kMeans.MaxX = pictureBox.Width;
+            kMeans.MaxY = pictureBox.Height;
+            Graphics g = pictureBox.CreateGraphics();
             g.Clear(Color.Black);
             stopwatch.Reset();
             stopwatch.Start();
+            labelTime.Text = "Выполняется...";
             kMeans.Calculate(g);
             stopwatch.Stop();
-            label1.Text = stopwatch.Elapsed.ToString();
+            labelTime.Text = stopwatch.Elapsed.ToString();
+            g.Dispose();
         }
     }
 }

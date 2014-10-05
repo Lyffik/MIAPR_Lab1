@@ -25,7 +25,7 @@ namespace WindowsFormsApplication1
                 Color.Green,
                 Color.Aqua,
                 Color.BlueViolet,
-                Color.Teal,
+                Color.Beige,
                 Color.RoyalBlue,
                 Color.Salmon,
                 Color.Sienna,
@@ -42,7 +42,13 @@ namespace WindowsFormsApplication1
                 Color.Olive,
                 Color.Yellow,
                 Color.YellowGreen,
-                Color.Violet
+                Color.Violet,
+                Color.DarkMagenta,
+                Color.Gold,
+                Color.DarkOrchid,
+                Color.LightCyan,
+                Color.LightBlue,
+                Color.Turquoise
             };
             vectors = new List<Vector>();
             centerOfClass = new List<CenterOfClass>();
@@ -53,18 +59,9 @@ namespace WindowsFormsApplication1
         public int MaxY { get; set; }
         public int MinY { get; set; }
 
-
-        private void Average(CenterOfClass center)
-        {
-        }
-
         private double Distance(Point p1, Point p2)
         {
             return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
-        }
-
-        private void Deviation()
-        {
         }
 
         private void CreateVectors(int n)
@@ -116,13 +113,6 @@ namespace WindowsFormsApplication1
         private bool FindNewCenters()
         {
             bool result = false;
-            /*foreach (CenterOfClass center in centerOfClass)
-            {
-                if (center.ChangedCenter())
-                {
-                    result = true;
-                }
-            }*/
             Parallel.ForEach(centerOfClass, center =>
             {
                 if (center.ChangedCenter())
@@ -133,38 +123,12 @@ namespace WindowsFormsApplication1
             return result;
         }
 
+
         private void RecalculateClasses()
         {
-            for (int i = 0; i < vectorsCount; i++)
+            foreach (Vector vector in vectors)
             {
-                Vector vector;
-                vector = vectors[i];
-                for (int j = 0; j < centersCount; j++)
-                {
-                    CenterOfClass center;
-                    center = centerOfClass[j];
-                    if (vector.Class == null)
-                    {
-                        center.AddVector(vector);
-                        vector.Class = center;
-                        vector.SetColor(centerOfClass[j].GetColor());
-                    }
-                    else
-                    {
-                        if (Distance(vector.point, center.point) <
-                            Distance(vector.point, vector.Class.point))
-                        {
-                            vector.Class.RemoveVector(vector);
-                            vector.Class = center;
-                            center.AddVector(vector);
-                            vector.SetColor(center.GetColor());
-                        }
-                    }
-                }
-            }
-         /*   Parallel.ForEach(vectors, vector =>
-            {
-                Parallel.ForEach(centerOfClass, center =>
+                foreach (CenterOfClass center in centerOfClass)
                 {
                     if (vector.Class == null)
                     {
@@ -183,8 +147,8 @@ namespace WindowsFormsApplication1
                             vector.SetColor(center.GetColor());
                         }
                     }
-                });
-            });*/
+                }
+            }
         }
 
         public void Calculate(Graphics g)
@@ -202,13 +166,17 @@ namespace WindowsFormsApplication1
 
         private void Draw(Graphics g)
         {
+          //  g.Clear(Color.Black);
             IntPtr hdc = g.GetHdc();
             foreach (Vector vector in vectors)
             {
                 vector.Draw(hdc);
             }
-           /* Parallel.ForEach(vectors, vector => { vector.Draw(hdc); });
-            Parallel.ForEach(centerOfClass, center => { center.Draw(hdc); });*/
+           
+            foreach (CenterOfClass center in centerOfClass)
+            {
+                center.Draw(hdc);
+            }
             g.ReleaseHdc(hdc);
         }
     }

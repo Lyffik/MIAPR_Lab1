@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.numericUpDownPointsCount = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownClassesCount = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnRun = new System.Windows.Forms.Button();
+            this.labelTime = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPointsCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownClassesCount)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBox
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(933, 637);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox.BackColor = System.Drawing.Color.Black;
+            this.pictureBox.Location = new System.Drawing.Point(3, 1);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(933, 637);
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
             // 
             // numericUpDownPointsCount
             // 
@@ -73,24 +73,24 @@
             this.numericUpDownClassesCount.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownClassesCount.TabIndex = 4;
             // 
-            // button1
+            // btnRun
             // 
-            this.button1.Location = new System.Drawing.Point(945, 110);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Выполнить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRun.Location = new System.Drawing.Point(945, 110);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(120, 23);
+            this.btnRun.TabIndex = 5;
+            this.btnRun.Text = "Выполнить";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // labelTime
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(942, 149);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Время выполнения";
+            this.labelTime.AutoSize = true;
+            this.labelTime.Location = new System.Drawing.Point(948, 154);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(105, 13);
+            this.labelTime.TabIndex = 6;
+            this.labelTime.Text = "Время выполнения";
             // 
             // label2
             // 
@@ -117,14 +117,14 @@
             this.ClientSize = new System.Drawing.Size(1174, 636);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelTime);
+            this.Controls.Add(this.btnRun);
             this.Controls.Add(this.numericUpDownClassesCount);
             this.Controls.Add(this.numericUpDownPointsCount);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "Алгоритм К-средних";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPointsCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownClassesCount)).EndInit();
             this.ResumeLayout(false);
@@ -134,11 +134,11 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.NumericUpDown numericUpDownPointsCount;
         private System.Windows.Forms.NumericUpDown numericUpDownClassesCount;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
     }

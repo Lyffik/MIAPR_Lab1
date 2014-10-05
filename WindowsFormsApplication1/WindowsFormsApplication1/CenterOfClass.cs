@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
@@ -23,7 +24,7 @@ namespace WindowsFormsApplication1
             }
             if (vectors.Count > 0)
             {
-                return new Point((int)(sumX / vectors.Count), (int)(sumY / vectors.Count));
+                return new Point((int) (sumX/vectors.Count), (int) (sumY/vectors.Count));
             }
             return point;
         }
@@ -37,15 +38,14 @@ namespace WindowsFormsApplication1
         {
             bool changed = false;
             Point averagePoint = Average();
-
-            for (int i = 0; i < vectors.Count; i++)
+            Parallel.ForEach(vectors, vector =>
             {
-                if (Distance(vectors[i].point, averagePoint) < Distance(point, averagePoint))
+                if (Distance(vector.point, averagePoint) < Distance(point, averagePoint))
                 {
                     changed = true;
-                    point = vectors[i].point;
+                    point = vector.point;
                 }
-            }
+            });
             return changed;
         }
 
@@ -73,19 +73,17 @@ namespace WindowsFormsApplication1
         {
             return color;
         }
-
         [DllImport("gdi32.dll")]
         private static extern uint SetPixel(IntPtr hdc, int X, int Y, uint crColor);
-
         private static uint ColorToUInt(Color color)
         {
-            return (color.R | ((uint)(color.G) << 8)) | (((uint)(color.B)) << 16);
+            return ((uint)(((uint)(color.R) | ((uint)(color.G) << 8)) | (((uint)(color.B)) << 16)));
         }
-
-        public void Draw( IntPtr hdc)
+        public void Draw(/*Graphics graphics*/IntPtr hdc)
         {
-            //   g.DrawEllipse(new Pen(color), vector.X, vector.Y, 2, 2);
             SetPixel(hdc, point.X, point.Y, ColorToUInt(color));
+          /*  SolidBrush solidBrush = new SolidBrush(Color.White);
+            graphics.FillEllipse(solidBrush, point.X, point.Y, 5,5);*/
         }
     }
 }
