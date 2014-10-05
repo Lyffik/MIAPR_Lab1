@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
@@ -20,7 +21,7 @@ namespace WindowsFormsApplication1
             {
                 Color.Red,
                 Color.Blue,
-                Color.Black,
+                Color.Bisque,
                 Color.Green,
                 Color.Aqua,
                 Color.BlueViolet,
@@ -29,7 +30,19 @@ namespace WindowsFormsApplication1
                 Color.Salmon,
                 Color.Sienna,
                 Color.PowderBlue,
-                Color.Plum
+                Color.Plum,
+                Color.Firebrick,
+                Color.DeepPink,
+                Color.ForestGreen,
+                Color.LawnGreen,
+                Color.DodgerBlue,
+                Color.MidnightBlue,
+                Color.LightSalmon,
+                Color.Khaki,
+                Color.Olive,
+                Color.Yellow,
+                Color.YellowGreen,
+                Color.Violet
             };
             vectors = new List<Vector>();
             centerOfClass = new List<CenterOfClass>();
@@ -142,6 +155,29 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+         /*   Parallel.ForEach(vectors, vector =>
+            {
+                Parallel.ForEach(centerOfClass, center =>
+                {
+                    if (vector.Class == null)
+                    {
+                        center.AddVector(vector);
+                        vector.Class = center;
+                        vector.SetColor(center.GetColor());
+                    }
+                    else
+                    {
+                        if (Distance(vector.point, center.point) <
+                            Distance(vector.point, vector.Class.point))
+                        {
+                            vector.Class.RemoveVector(vector);
+                            vector.Class = center;
+                            center.AddVector(vector);
+                            vector.SetColor(center.GetColor());
+                        }
+                    }
+                });
+            });*/
         }
 
         public void Calculate(Graphics g)
@@ -160,14 +196,12 @@ namespace WindowsFormsApplication1
         private void Draw(Graphics g)
         {
             IntPtr hdc = g.GetHdc();
-            foreach (Vector p in vectors)
+            foreach (Vector vector in vectors)
             {
-                p.Draw(g, hdc);
+                vector.Draw(hdc);
             }
-            foreach (CenterOfClass p in centerOfClass)
-            {
-                p.Draw(g, hdc);
-            }
+           /* Parallel.ForEach(vectors, vector => { vector.Draw(hdc); });
+            Parallel.ForEach(centerOfClass, center => { center.Draw(hdc); });*/
             g.ReleaseHdc(hdc);
         }
     }
