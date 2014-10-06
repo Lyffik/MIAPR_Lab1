@@ -126,13 +126,12 @@ namespace WindowsFormsApplication1
 
         private void RecalculateClasses()
         {
-            foreach (Vector vector in vectors)
+            Parallel.ForEach(vectors, vector =>
             {
                 foreach (CenterOfClass center in centerOfClass)
                 {
                     if (vector.Class == null)
                     {
-                        center.AddVector(vector);
                         vector.Class = center;
                         vector.SetColor(center.GetColor());
                     }
@@ -141,11 +140,23 @@ namespace WindowsFormsApplication1
                         if (Distance(vector.point, center.point) <
                             Distance(vector.point, vector.Class.point))
                         {
-                            vector.Class.RemoveVector(vector);
                             vector.Class = center;
-                            center.AddVector(vector);
                             vector.SetColor(center.GetColor());
                         }
+                    }
+                }
+            });
+            foreach (CenterOfClass center in centerOfClass)
+            {
+                center.ClearVectors();
+            }
+            foreach (Vector vector in vectors)
+            {
+                foreach (CenterOfClass center in centerOfClass)
+                {
+                    if (vector.Class.Equals(center))
+                    {
+                        center.AddVector(vector);
                     }
                 }
             }
@@ -153,7 +164,7 @@ namespace WindowsFormsApplication1
 
         public int Calculate(Graphics g)
         {
-            int iteration=0;
+            int iteration = 0;
             CreateVectors(vectorsCount);
             CreateCenteresOfClasses(centersCount);
             RecalculateClasses();
@@ -170,13 +181,13 @@ namespace WindowsFormsApplication1
 
         private void Draw(Graphics g)
         {
-          //      g.Clear(Color.Black);
+            //      g.Clear(Color.Black);
             IntPtr hdc = g.GetHdc();
             foreach (Vector vector in vectors)
             {
                 vector.Draw(hdc);
             }
-           
+
             foreach (CenterOfClass center in centerOfClass)
             {
                 center.Draw(hdc);
