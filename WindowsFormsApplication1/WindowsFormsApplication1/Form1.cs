@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace WindowsFormsApplication1
 {
@@ -14,11 +12,6 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void Initialize()
-        {
-            textBoxIteration.Clear();
-            textBox.Clear();
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             var stopwatch = new Stopwatch();
@@ -29,11 +22,12 @@ namespace WindowsFormsApplication1
             g.Clear(Color.Black);
             stopwatch.Reset();
             stopwatch.Start();
-            textBoxIteration.Text = Convert.ToString(kMeans.Calculate(g));
+            int iteration = kMeans.Calculate(g);
             stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;
-            textBox.Text = String.Format("{0:00}:{1:00}.{2:0}", ts.Minutes, ts.Seconds, ts.Milliseconds);
-           
+            MessageBox.Show(String.Format("Время выполнения: {0:00}:{1:00}.{2:0}\nКоличество итераций: {3}", ts.Minutes,
+                ts.Seconds,
+                ts.Milliseconds, iteration));
             g.Dispose();
         }
     }
