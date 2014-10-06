@@ -151,22 +151,26 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void Calculate(Graphics g)
+        public int Calculate(Graphics g)
         {
+            int iteration=0;
             CreateVectors(vectorsCount);
             CreateCenteresOfClasses(centersCount);
             RecalculateClasses();
+            iteration++;
             Draw(g);
             while (FindNewCenters())
             {
                 RecalculateClasses();
+                iteration++;
                 Draw(g);
             }
+            return iteration;
         }
 
         private void Draw(Graphics g)
         {
-          //  g.Clear(Color.Black);
+          //      g.Clear(Color.Black);
             IntPtr hdc = g.GetHdc();
             foreach (Vector vector in vectors)
             {

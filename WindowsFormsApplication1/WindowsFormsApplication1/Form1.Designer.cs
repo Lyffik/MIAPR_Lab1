@@ -35,6 +35,9 @@
             this.labelTime = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.textBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxIteration = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPointsCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownClassesCount)).BeginInit();
@@ -57,15 +60,25 @@
             0,
             0,
             0});
+            this.numericUpDownPointsCount.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.numericUpDownPointsCount.Name = "numericUpDownPointsCount";
             this.numericUpDownPointsCount.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownPointsCount.TabIndex = 3;
+            this.numericUpDownPointsCount.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // numericUpDownClassesCount
             // 
             this.numericUpDownClassesCount.Location = new System.Drawing.Point(945, 66);
             this.numericUpDownClassesCount.Maximum = new decimal(new int[] {
-            50,
+            30,
             0,
             0,
             0});
@@ -110,11 +123,39 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Количество классов";
             // 
+            // textBox
+            // 
+            this.textBox.Location = new System.Drawing.Point(951, 170);
+            this.textBox.Name = "textBox";
+            this.textBox.ReadOnly = true;
+            this.textBox.Size = new System.Drawing.Size(120, 20);
+            this.textBox.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(952, 207);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Количество итераций:";
+            // 
+            // textBoxIteration
+            // 
+            this.textBoxIteration.Location = new System.Drawing.Point(955, 223);
+            this.textBoxIteration.Name = "textBoxIteration";
+            this.textBoxIteration.ReadOnly = true;
+            this.textBoxIteration.Size = new System.Drawing.Size(116, 20);
+            this.textBoxIteration.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 636);
+            this.Controls.Add(this.textBoxIteration);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelTime);
@@ -141,6 +182,9 @@
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxIteration;
     }
 }
 
